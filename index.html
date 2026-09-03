@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parth Patil — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F0F1F4;
+    --paper-raised: #FFFFFF;
+    --ink: #1B1D1F;
+    --ink-soft: #565A5F;
+    --line: #DBDEE3;
+    --forest: #1F4D3D;
+    --forest-deep: #163A2E;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(240, 241, 244, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+  .nav-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover { color: var(--forest); }
+
+  header.hero {
+    padding: 88px 0 64px;
+  }
+  .eyebrow-role {
+    color: var(--forest);
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    max-width: 14ch;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--forest);
+  }
+  .hero-desc {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0 0 34px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    transition: all 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-primary:hover { background: var(--forest-deep); border-color: var(--forest-deep); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+
+  section {
+    padding: 56px 0;
+    border-top: 1px solid var(--line);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  section.visible { opacity: 1; transform: translateY(0); }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 26px;
+  }
+
+  .about-text {
+    font-size: 1.08rem;
+    max-width: 58ch;
+    color: var(--ink);
+  }
+  .about-text p { margin: 0 0 16px; }
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .project {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    padding: 34px;
+  }
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-bottom: 4px;
+  }
+  .project-top h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.55rem;
+    margin: 0;
+  }
+  .project-tag {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--forest);
+    border: 1px solid var(--forest);
+    padding: 4px 10px;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+  .project-sub {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin: 0 0 22px;
+  }
+  .project-block { margin-bottom: 18px; }
+  .project-block:last-of-type { margin-bottom: 24px; }
+  .project-block-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+  }
+  .project-block p {
+    margin: 0;
+    font-size: 0.96rem;
+    line-height: 1.6;
+  }
+  .stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .stack-pill {
+    font-size: 0.82rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 5px 11px;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--forest);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    border-bottom: 1px solid transparent;
+  }
+  .project-link:hover { border-bottom-color: var(--forest); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .skill-group h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  .skill-group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .skill-group li {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-group li:last-child { border-bottom: none; }
+
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .edu-row:last-child { border-bottom: none; }
+  .edu-main h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.08rem;
+    margin: 0 0 4px;
+  }
+  .edu-main p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  .edu-date {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .cert-list { list-style: none; margin: 0; padding: 0; }
+  .cert-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.94rem;
+  }
+  .cert-row:last-child { border-bottom: none; }
+  .cert-issuer {
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+    white-space: nowrap;
+  }
+
+  .skills-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+
+  .contact-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .contact-inner h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 2rem;
+    margin: 0 0 8px;
+  }
+  .contact-inner p {
+    color: var(--ink-soft);
+    margin: 0;
+    font-size: 1rem;
+  }
+  .contact-email {
+    color: var(--forest);
+    text-decoration: none;
+    border-bottom: 1px solid var(--forest);
+  }
+  .icon-row {
+    display: flex;
+    gap: 16px;
+  }
+  .icon-row a {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .icon-row a:hover { background: var(--ink); color: var(--paper); }
+  .icon-row svg { width: 18px; height: 18px; }
+
+  footer {
+    padding: 28px 0 40px;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 620px) {
+    .nav-links { gap: 18px; }
+    .skills-grid { grid-template-columns: 1fr; gap: 22px; }
+    .contact-inner { flex-direction: column; align-items: flex-start; }
+    .project { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="nav-mark">Parth Patil</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certs</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow-role">IT Engineering Student — AI/ML</p>
+    <h1>Building tools that make <em>messy data</em> trustworthy.</h1>
+    <p class="hero-desc">3rd-year B.Tech IT student at Vishwakarma Institute of Technology, Pune. I learn by shipping — most recently an AI-assisted platform for verifying Indian property records.</p>
+    <div class="cta-row">
+      <a href="https://github.com/parthh001" class="btn btn-primary" target="_blank" rel="noopener">View GitHub</a>
+      <a href="mailto:parthspatil001@gmail.com" class="btn btn-secondary">Email me</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-text">
+      <p>I'm a third-year IT engineering student focused on AI/ML and software engineering. I spend most of my time outside class building real projects rather than only doing coursework, because that's where I actually learn how systems fail and how to fix them.</p>
+      <p>Right now that means working on data verification and applied AI — taking unstructured, scattered records and making them queryable and trustworthy. I'm early in this path and treat every project as a rep, not a finished statement.</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <p class="section-label">Education</p>
+    <div class="project" style="padding: 10px 34px;">
+      <div class="edu-row">
+        <div class="edu-main">
+          <h4>B.Tech, Information Technology</h4>
+          <p>Vishwakarma Institute of Technology, Pune — CGPA 8.3/10 · Coordinator, EPEC</p>
+        </div>
+        <span class="edu-date">2024 — Present</span>
+      </div>
+      <div class="edu-row">
+        <div class="edu-main">
+          <h4>Higher Secondary (HSC Board)</h4>
+          <p>SSVPS's Science College, Dhule — 88.67%, Mathematics/Physics/Electronics</p>
+        </div>
+        <span class="edu-date">Apr 2024</span>
+      </div>
+      <div class="edu-row">
+        <div class="edu-main">
+          <h4>Secondary (CBSE Board)</h4>
+          <p>Chavara Public School, Dhule — 94%, football (district level)</p>
+        </div>
+        <span class="edu-date">May 2022</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <p class="section-label">Selected work</p>
+    <div class="project">
+      <div class="project-top">
+        <h3>PropIntel</h3>
+      </div>
+      <p class="project-sub">AI-assisted property intelligence platform for Indian land records</p>
+
+      <div class="project-block">
+        <p class="project-block-label">Problem</p>
+        <p>Verifying an Indian property title means cross-referencing survey numbers, ownership history, court filings, and government records that live in disconnected, often unstructured sources — a process that's slow and easy to get wrong.</p>
+      </div>
+
+      <div class="project-block">
+        <p class="project-block-label">Approach</p>
+        <p>Built a pipeline that OCRs scanned land records, extracts structured fields, and cross-matches them against ownership and legal data to surface risk signals before a purchase decision is made.</p>
+      </div>
+
+      <div class="project-block">
+        <p class="project-block-label">Stack</p>
+        <div class="stack-row">
+          <span class="stack-pill">Next.js</span>
+          <span class="stack-pill">React / TypeScript</span>
+          <span class="stack-pill">Prisma + SQLite</span>
+          <span class="stack-pill">Tesseract OCR</span>
+          <span class="stack-pill">Leaflet</span>
+        </div>
+      </div>
+
+      <a href="https://github.com/parthh001/propintel" class="project-link" target="_blank" rel="noopener">View repository →</a>
+    </div>
+
+    <div class="project" style="margin-top: 24px;">
+      <div class="project-top">
+        <h3>Multimodal Cardiovascular Monitoring</h3>
+        <span class="project-tag">Patent filed</span>
+      </div>
+      <p class="project-sub">Multimodal deep learning framework for continuous cardiovascular health monitoring</p>
+
+      <div class="project-block">
+        <p class="project-block-label">Problem</p>
+        <p>Most wearable cardiovascular monitors rely on a single signal type, missing cross-signal patterns that matter for early risk detection.</p>
+      </div>
+
+      <div class="project-block">
+        <p class="project-block-label">Approach</p>
+        <p>Built a multimodal deep learning framework fusing ECG, PPG, and SCG signals captured via ESP32-based edge hardware, using transformer architectures for real-time signal processing. The research and framework were filed for patent publication under India's Controller General of Patents, Designs & Trade Marks (CGPDTM).</p>
+      </div>
+
+      <div class="project-block">
+        <p class="project-block-label">Stack</p>
+        <div class="stack-row">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">PyTorch</span>
+          <span class="stack-pill">Transformers</span>
+          <span class="stack-pill">ESP32 / Edge AI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project" style="margin-top: 24px;">
+      <div class="project-top">
+        <h3>AI-Powered Smart Email Assistant</h3>
+      </div>
+      <p class="project-sub">Automation system for email summarization, categorization, and reply generation</p>
+
+      <div class="project-block">
+        <p class="project-block-label">Problem</p>
+        <p>Managing a high volume of email manually — triaging, categorizing, and drafting replies — doesn't scale.</p>
+      </div>
+
+      <div class="project-block">
+        <p class="project-block-label">Approach</p>
+        <p>Built an email automation system using NLP and transformer-based models to summarize threads, categorize incoming mail, generate smart replies, and extract calendar events automatically.</p>
+      </div>
+
+      <div class="project-block">
+        <p class="project-block-label">Stack</p>
+        <div class="stack-row">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">IMAP</span>
+          <span class="stack-pill">NLP / Transformers</span>
+          <span class="stack-pill">Regex</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project" style="margin-top: 24px;">
+      <div class="project-top">
+        <h3>E-Canteen Management System</h3>
+      </div>
+      <p class="project-sub">Digital ordering and management system for the college canteen</p>
+
+      <div class="project-block">
+        <p class="project-block-label">Problem</p>
+        <p>The college canteen ran on manual, in-person ordering with no digital system for menu or order management.</p>
+      </div>
+
+      <div class="project-block">
+        <p class="project-block-label">Approach</p>
+        <p>Built a full-stack web app handling menu management, order placement, and day-to-day canteen operations.</p>
+      </div>
+
+      <div class="project-block">
+        <p class="project-block-label">Stack</p>
+        <div class="stack-row">
+          <span class="stack-pill">HTML / CSS</span>
+          <span class="stack-pill">JavaScript</span>
+          <span class="stack-pill">SQL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <ul>
+          <li>Python</li>
+          <li>C / C++</li>
+          <li>JavaScript</li>
+          <li>SQL</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Web & Data</h4>
+        <ul>
+          <li>HTML, CSS, Bootstrap</li>
+          <li>MySQL, MongoDB</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <ul>
+          <li>Git & GitHub</li>
+          <li>VS Code</li>
+          <li>n8n, Airtable</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Core CS</h4>
+        <ul>
+          <li>Data Structures & Algorithms</li>
+          <li>OOP, DBMS, OS</li>
+          <li>Theory of Computation</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Currently learning</h4>
+        <ul>
+          <li>AI/ML fundamentals</li>
+          <li>Applied model building</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <p class="section-label">Certifications</p>
+    <ul class="cert-list">
+      <li class="cert-row"><span>GenAI Powered Data Analytics — Virtual Experience Program</span><span class="cert-issuer">TATA</span></li>
+      <li class="cert-row"><span>Introduction to Artificial Intelligence</span><span class="cert-issuer">Infosys Springboard</span></li>
+      <li class="cert-row"><span>Python Skill Certification</span><span class="cert-issuer">HackerRank</span></li>
+      <li class="cert-row"><span>SQL (Intermediate) Skill Certification</span><span class="cert-issuer">HackerRank</span></li>
+      <li class="cert-row"><span>Responsive Web Development with HTML and CSS</span><span class="cert-issuer">Infosys Springboard</span></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <div class="contact-inner">
+      <div>
+        <h2>Let's talk.</h2>
+        <p><a href="mailto:parthspatil001@gmail.com" class="contact-email">parthspatil001@gmail.com</a></p>
+      </div>
+      <div class="icon-row">
+        <a href="https://github.com/parthh001" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.28 9.28 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/parthpatil10" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05C19.9 8 21 10.36 21 14.15V23h-4v-7.86c0-1.87-.03-4.28-2.6-4.28-2.61 0-3.01 2.04-3.01 4.14V23h-4V8z"/></svg>
+        </a>
+        <a href="https://x.com/par_tthh" target="_blank" rel="noopener" aria-label="X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.4 8.4L23 22h-6.8l-5.3-6.9L4.8 22H1.7l7.9-9L1 2h6.9l4.8 6.3L18.9 2zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">Parth Patil — Pune, India</div>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
