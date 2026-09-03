@@ -58,6 +58,7 @@
   .nav-links {
     display: flex;
     gap: 28px;
+    align-items: center;
   }
   .nav-links a {
     color: var(--ink-soft);
@@ -67,6 +68,16 @@
     transition: color 0.15s ease;
   }
   .nav-links a:hover { color: var(--forest); }
+  .nav-links a.nav-resume {
+    color: var(--forest);
+    font-weight: 700;
+    border: 1px solid var(--forest);
+    padding: 6px 12px;
+  }
+  .nav-links a.nav-resume:hover {
+    background: var(--forest);
+    color: var(--paper);
+  }
 
   header.hero {
     padding: 88px 0 64px;
@@ -140,6 +151,56 @@
     text-transform: uppercase;
     color: var(--ink-soft);
     margin: 0 0 26px;
+  }
+
+  /* Resume highlight section */
+  section#resume {
+    border-top: none;
+    padding-top: 0;
+    padding-bottom: 56px;
+  }
+  .resume-banner {
+    background: var(--forest);
+    color: var(--paper);
+    padding: 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 22px 28px;
+  }
+  .resume-banner .section-label {
+    color: rgba(240, 241, 244, 0.75);
+    margin: 0 0 10px;
+  }
+  .resume-banner h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.7rem;
+    margin: 0 0 8px;
+    color: var(--paper);
+  }
+  .resume-banner p.resume-desc {
+    margin: 0;
+    color: rgba(240, 241, 244, 0.82);
+    font-size: 0.98rem;
+    max-width: 46ch;
+  }
+  .resume-banner .cta-row .btn-primary {
+    background: var(--paper);
+    color: var(--forest-deep);
+    border-color: var(--paper);
+  }
+  .resume-banner .cta-row .btn-primary:hover {
+    background: #fff;
+  }
+  .resume-banner .cta-row .btn-secondary {
+    color: var(--paper);
+    border-color: var(--paper);
+  }
+  .resume-banner .cta-row .btn-secondary:hover {
+    background: var(--paper);
+    color: var(--forest-deep);
   }
 
   .about-text {
@@ -347,6 +408,7 @@
     .skills-grid { grid-template-columns: 1fr; gap: 22px; }
     .contact-inner { flex-direction: column; align-items: flex-start; }
     .project { padding: 24px; }
+    .resume-banner { padding: 24px; }
   }
 </style>
 </head>
@@ -356,6 +418,7 @@
   <div class="wrap">
     <span class="nav-mark">Parth Patil</span>
     <div class="nav-links">
+      <a href="#resume" class="nav-resume">Resume</a>
       <a href="#about">About</a>
       <a href="#education">Education</a>
       <a href="#work">Work</a>
@@ -377,6 +440,20 @@
       <a href="mailto:parthspatil001@gmail.com" class="btn btn-secondary">Email me</a>
     </div>
   </header>
+
+  <section id="resume">
+    <div class="resume-banner">
+      <div>
+        <p class="section-label">Resume</p>
+        <h2>Full resume, one click away.</h2>
+        <p class="resume-desc">Summary, projects, education, and technical skills — updated September 2026.</p>
+      </div>
+      <div class="cta-row">
+        <a href="Parth_Patil_Resume.pdf" class="btn btn-primary" target="_blank" rel="noopener">View Resume</a>
+        <a href="Parth_Patil_Resume.pdf" download class="btn btn-secondary">Download PDF</a>
+      </div>
+    </div>
+  </section>
 
   <section id="about">
     <p class="section-label">About</p>
